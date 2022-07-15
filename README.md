@@ -10,7 +10,7 @@
 
 ClockExeファイル内に実行可能ファイルが置いてあります。
 
-### 目的
+## 目的
 
 もう一つの目的としてUnityでデスクトップアプリを作った際の負荷について知りたい、という目的もありました。
 
@@ -26,7 +26,7 @@ Made with Unityは出ます。許せません。
 
 # Task Time Recoder(Unity)
 
-### Usage
+## Usage
 
 This is a work recording application. Total work time is recorded.
 It is intended to be used for the following purposes.
@@ -36,7 +36,7 @@ It is intended to be used for the following purposes.
 
 There is .exe in ClockExe directory.
 
-### Purpose
+## Purpose
 
 Another purpose was to know the load when creating a desktop application in Unity.
 
