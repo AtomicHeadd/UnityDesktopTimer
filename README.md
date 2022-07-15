@@ -1,10 +1,16 @@
 # 作業記録アプリ(Unity)
 
+## 使用法
+
 作業記録アプリです。トータルの作業時間が記録されます。
 以下のような用途で使うことを想定しています。
 
 - 特定のタスクにかけた時間を記録したい(俺はまぁUnity1000時間、React500時間ぐらいだね～、など)
 - 集中している時間を記録したい(タスク開始して10分しか経ってないのにYoutube見ようとしてるやんけ！など)
+
+ClockExeファイル内に実行可能ファイルが置いてあります。
+
+### 目的
 
 もう一つの目的としてUnityでデスクトップアプリを作った際の負荷について知りたい、という目的もありました。
 
@@ -20,11 +26,17 @@ Made with Unityは出ます。許せません。
 
 # Task Time Recoder(Unity)
 
+### Usage
+
 This is a work recording application. Total work time is recorded.
 It is intended to be used for the following purposes.
 
 - To record the time spent on a specific task (I've been working on Unity for 1000 hours, React for 500 hours, not that much, not that much, etc.)
 - To record the time spent concentrating (I started a task only 10 minutes ago and I'm trying to watch Youtube! OMG! etc.)
+
+There is .exe in ClockExe directory.
+
+### Purpose
 
 Another purpose was to know the load when creating a desktop application in Unity.
 
