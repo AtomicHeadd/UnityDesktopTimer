@@ -108,9 +108,9 @@ public class TimeManager : MonoBehaviour
         //ŠÔ‚Ü‚Ås‚Á‚Ä‚È‚©‚Á‚½‚ç•ª’PˆÊ
         if (totalTimes[index] < 3600)
         {
-            spentTime.text = $"{Mathf.FloorToInt(totalTimes[index] / 60)}.{Mathf.FloorToInt(totalTimes[index] % 60 / 60 * 10)} minutes";
+            spentTime.text = $"{totalTimes[index] / 60:F1} minutes";
         }
-        else spentTime.text = $"{Mathf.FloorToInt(totalTimes[index] / 3600)}.{Mathf.FloorToInt((totalTimes[index] % 3600)/3600)*10} hours";
+        else spentTime.text = $"{totalTimes[index] / 3600:F1} hours";
     }
 
     public void OnClickNewTask()
