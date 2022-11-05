@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-public class TimeManager : MonoBehaviour
+public class TimeManager : SingletonMonoBehaviour<TimeManager>
 {
     [SerializeField] GameObject canvas;
 
@@ -21,15 +21,10 @@ public class TimeManager : MonoBehaviour
     GameObject pause;
     TMP_InputField nameInput;
 
-    List<string> taskNames;
-    List<float> totalTimes;
     int pageIndex;
 
-    
-
-    private void Awake()
+    private void Start()
     {
-        Load(out taskNames, out totalTimes);
         isCounting = false;
         countingTime = 0;
         pageIndex = 0;
@@ -50,17 +45,21 @@ public class TimeManager : MonoBehaviour
     }
     private void Update()
     {
+        //名前変更
         if(nameInput != null && nameInput.gameObject.activeInHierarchy && Input.GetKeyDown(KeyCode.Return))
         {
             nameInput.gameObject.SetActive(false);
             if(nameInput.text != "")
             {
-                taskNames[pageIndex] = nameInput.text;
+                string previousName = History.Instance.savedTaskNames[pageIndex];
+                History.Instance.savedTaskNames[pageIndex] = nameInput.text;
+                History.Instance.taskTotalTimes[nameInput.text] = History.Instance.taskTotalTimes[previousName];
+                History.Instance.taskTotalTimes.Remove(previousName);
                 ShowTaskDetail(pageIndex);
-                Save(taskNames, totalTimes);
+                History.Instance.SaveTotalTimes();
             }
         }
-
+        //カウント
         if (!isCounting) return;
         countingTime += Time.deltaTime;
         timeText.text = ConvertTimeToText(countingTime);
@@ -80,16 +79,15 @@ public class TimeManager : MonoBehaviour
     {
         isCounting = start;
         if (!start)
-        {
-            totalTimes[pageIndex] += countingTime;
+        {           
+            History.Instance.FinishRecording(countingTime);
             ShowTaskDetail(pageIndex);
-
             countingTime = 0;
-            timeText.text = ConvertTimeToText(0);          
-            Save(taskNames, totalTimes);
+            timeText.text = ConvertTimeToText(0);                    
         }
         else
         {
+            History.Instance.StartRecoding(History.Instance.savedTaskNames[pageIndex]);
             rightArrow.SetActive(false);
             leftArrow.SetActive(false);
             pause.SetActive(true);
@@ -101,24 +99,30 @@ public class TimeManager : MonoBehaviour
     {
         pageIndex = index;
         leftArrow.SetActive(index > 0);
-        rightArrow.SetActive(index < taskNames.Count - 1);
-        title.text = taskNames[index];
+        rightArrow.SetActive(index < History.Instance.savedTaskNames.Count - 1);
+        title.text = History.Instance.savedTaskNames[index];
         pause.SetActive(false);
         startButton.SetActive(true);
+        string totalTime = History.Instance.GetTotalTimeByIndex(index);
+        string[] hhmmss = totalTime.Split(":");
         //時間まで行ってなかったら分単位
-        if (totalTimes[index] < 3600)
+        if (int.Parse(hhmmss[0]) <= 0)
         {
-            spentTime.text = $"{totalTimes[index] / 60:F1} minutes";
+            float seconds = float.Parse(hhmmss[1]) * 60f + float.Parse(hhmmss[2]);
+            spentTime.text = $"{seconds / 60:F1} minutes";
         }
-        else spentTime.text = $"{totalTimes[index] / 3600:F1} hours";
+        else
+        {
+            float minutes = float.Parse(hhmmss[0]) * 60 + float.Parse(hhmmss[1]);
+            spentTime.text = $"{minutes / 3600:F1} hours";
+        }
     }
 
     public void OnClickNewTask()
     {
-        taskNames.Add($"New Task{pageIndex}");
-        totalTimes.Add(0);
-        ShowTaskDetail(taskNames.Count - 1);
-        Save(taskNames, totalTimes);
+        History.Instance.AddNewTask($"New Task{pageIndex}");
+        ShowTaskDetail(History.Instance.savedTaskNames.Count - 1);
+        History.Instance.SaveTotalTimes();
     }
 
     public void TogglePause()
@@ -143,15 +147,11 @@ public class TimeManager : MonoBehaviour
         canvas.transform.Find("DeleteConfirm").gameObject.SetActive(false);
         if (delete)
         {
-            taskNames.RemoveAt(pageIndex);
-            totalTimes.RemoveAt(pageIndex);
-            if (taskNames.Count == 0)
-            {
-                taskNames.Add("New Task0");
-                totalTimes.Add(0);
-            }
-            else if (pageIndex == taskNames.Count) pageIndex--;
-            ShowTaskDetail(pageIndex);
+            History.Instance.taskTotalTimes.Remove(History.Instance.savedTaskNames[pageIndex]);
+            History.Instance.savedTaskNames.RemoveAt(pageIndex);
+            if (History.Instance.savedTaskNames.Count == 0) History.Instance.AddNewTask("New Task");
+            else if (pageIndex == History.Instance.savedTaskNames.Count) pageIndex--;
+            ShowTaskDetail(pageIndex);           
         }
     }
 
@@ -171,8 +171,7 @@ public class TimeManager : MonoBehaviour
             for(int i=0; i<savedNames.Length-1; i++)
             {
                 names.Add(savedNames[i]);
-                print(savedTimes[i]);
-                print(savedNames[i]);
+                print($"{savedNames[i]}:{savedTimes[i]}");
                 times.Add(float.Parse(savedTimes[i]));
             }
         }
