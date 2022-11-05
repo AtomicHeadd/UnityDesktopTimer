@@ -1,5 +1,8 @@
 # 作業記録アプリ(Unity)
 
+<img src="https://user-images.githubusercontent.com/58561188/200147419-3ac83943-3f9f-43ab-bca2-669b3c83d0b5.png" width="150"></li>
+<img src="https://user-images.githubusercontent.com/58561188/200147422-2c7bd552-b3b5-4b7c-a1af-4b1c08a38cd8.png" width="150"></li>
+
 ## 使用法
 
 作業記録アプリです。トータルの作業時間が記録されます。
@@ -8,7 +11,7 @@
 - 特定のタスクにかけた時間を記録したい(俺はまぁUnity1000時間、React500時間ぐらいだね～、など)
 - 集中している時間を記録したい(タスク開始して10分しか経ってないのにYoutube見ようとしてるやんけ！など)
 
-ClockExeファイル内に実行可能ファイルが置いてあります。
+buildファイル内に実行可能ファイルが置いてあります。
 
 ## 目的
 
