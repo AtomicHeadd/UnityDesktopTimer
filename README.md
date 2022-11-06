@@ -66,5 +66,3 @@ However, since the CPU usage rate rises to about the same level to about 5% when
 As a result, I think the better memory efficiency when compared to Chrome can be said to be an advantage of making apps with Unity.
 
 Made with Unity is out. I can't forgive.
-
-Translated with www.DeepL.com/Translator (free version)
