@@ -11,7 +11,9 @@
 - 特定のタスクにかけた時間を記録したい(俺はまぁUnity1000時間、React500時間ぐらいだね～、など)
 - 集中している時間を記録したい(タスク開始して10分しか経ってないのにYoutube見ようとしてるやんけ！など)
 
-buildファイル内に実行可能ファイルが置いてあります。
+実行可能ファイルは含まれていません。
+
+使用する際には2021.3.3f1以降のUnityで起動し、ビルドしてください。
 
 ## 目的
 
@@ -45,7 +47,9 @@ It is intended to be used for the following purposes.
 - To record the time spent on a specific task (I've been working on Unity for 1000 hours, React for 500 hours, not that much, not that much, etc.)
 - To record the time spent concentrating (I started a task only 10 minutes ago and I'm trying to watch Youtube! OMG! etc.)
 
-There is exe in "Build" directory.
+executable file is NOT included. (because of GitLFS or something idk)
+
+you need to build to use this app by opening this repository in Unity(>= 2021.3.3f1)
 
 ## Purpose
 
