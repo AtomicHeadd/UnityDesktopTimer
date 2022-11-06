@@ -19,11 +19,19 @@ buildファイル内に実行可能ファイルが置いてあります。
 
 解像度は350x600のウィンドウで、純粋なUI要素のみを使い、その他カメラなどの最適化は行わずデフォルトのままです。
 
-結果としてはメモリ効率が非常に良く、CPUやGPU使用率はやや高い程度で、許容範囲内です(タスクマネージャーで測定)。
-どの項目もChromeでYoutubeを見るときの1/10くらいの値に収まっていました。
+測定にはタスクマネージャーを使用しました。測定項目はCPU、メモリです。
 
-これから言えることは、デスクトップアプリのためだけにTkinterをはじめとする別フレームワークを学習するよりは、
-デザインのカスタマイズが簡単なUnityをそのまま使っても良いかもしれません。
+GPUに関しては少しでも使用されると高い値を出すので使用しません。
+
+普段使用するアプリとしてChromeを比較対象とします。
+
+![image](https://user-images.githubusercontent.com/58561188/200147989-7dd4e262-6b23-4f50-b8f9-9c84dcf1f74c.png)
+
+結果を見るとメモリ効率は良いものの、CPU使用率はやや高い印象があります。
+
+ただしCPU使用率はChromeで動画などの動的コンテンツを見た際にも同程度～5%程度まで上がるため、おおよそ同程度だと考えることができます。
+
+結果としてChromeと比較した場合にメモリ効率が良いことはUnityでアプリを作るメリットと言えると思います。
 
 Made with Unityは出ます。許せません。
 
@@ -37,18 +45,26 @@ It is intended to be used for the following purposes.
 - To record the time spent on a specific task (I've been working on Unity for 1000 hours, React for 500 hours, not that much, not that much, etc.)
 - To record the time spent concentrating (I started a task only 10 minutes ago and I'm trying to watch Youtube! OMG! etc.)
 
-There is .exe in ClockExe directory.
+There is exe in "Build" directory.
 
 ## Purpose
 
-Another purpose was to know the load when creating a desktop application in Unity.
+Another objective was to know about the load when creating a desktop application in Unity.
 
-The resolution was a 350x600 window, using only pure UI elements, and no other optimizations such as camera, etc.
+The resolution was a 350x600 window, using only pure UI elements and no other optimizations such as cameras, etc. The default resolution was used.
 
-The result is very good memory efficiency, CPU and GPU utilization are only slightly high and within acceptable limits (measured by Task Manager).
-All items were within about 1/10 of the values when viewing Youtube in Chrome.
+Task Manager was used for the measurement. The measurement items were CPU and memory.
 
-I can say from this that rather than learning Tkinter and other separate frameworks just for desktop apps
-You may as well just use Unity as it is, which is easy to customize the design.
+We did not use the GPU, as it shows huge value once it is used.
 
-Made with Unity will be out. I never forgive this.
+Chrome is used as a comparison target as it is an application that is usually used.
+
+When I look at the result, although memory efficiency is good, I have an impression that CPU usage is a little high.
+
+However, since the CPU usage rate rises to about the same level to about 5% when viewing dynamic contents such as videos in Chrome, it can be considered to be about the same level.
+
+As a result, I think the better memory efficiency when compared to Chrome can be said to be an advantage of making apps with Unity.
+
+Made with Unity is out. I can't forgive.
+
+Translated with www.DeepL.com/Translator (free version)
